@@ -5,6 +5,8 @@
 
 //pour utiliser socket.io --> npm i --save socket.io
 
+//j'ai suivi le cours et donc pas encore commencé le tp (j'étais pas là l'année dernière)
+
 const express = require('express'); //export marche pas ici donc on utilise require pour utiliser express
 
 const app = express(); //crée le serveur web avec express
