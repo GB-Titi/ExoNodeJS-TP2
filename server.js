@@ -11,13 +11,28 @@
 
 //j'ai suivi le cours et donc pas encore commencé le tp (j'étais pas là l'année dernière)
 
+//utiliser path.join pour les import
+
 // =========================== FIN "INTRO"  ===================================//
 
 const express = require('express'); //export marche pas ici donc on utilise require pour utiliser express
 const app = express(); //crée le serveur web avec express
+const http = require('http').Server(app);
 const fs = require('fs'); //on require file controller
+const path = require('path');
 
-//Syncrone mais avant initialisation donc "ça passe"
+//require de ServerEvent qu'on a crée en utilisant parh.join
+const ServerEvent = require(path.join(__dirname, 'Controller', 'ServerEvent.js'));
+
+//point d'écoute du canal 1: (toujours sur les listener d'abord déclarer sur quoi il écoute avant d'émettre, c'est pour ça qu'il est avant le require)
+ServerEvent.on('Canal_1', data => console.log(data));
+
+//require de WebSockt qu'on a crée en utilisant path.join pour récupérer message
+const socketPath = path.join(__dirname, 'Controller', 'sockets.js');
+require(socketPath).listen(http, ServerEvent);
+//console.log('ServerEvent :', ServerEvent);
+
+//Syncrone mais avant initialisation donc "ça passe" --> on dit que indexHtml est lu par chatFile
 const chatFile = fs.readFileSync('./index.html');
 
 function chatController(req, res){
