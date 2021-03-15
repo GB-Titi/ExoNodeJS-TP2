@@ -1,6 +1,7 @@
 'use strict';
 
 const socketio = require('socket.io');
+const client = require('socket.io-client');
 
 //const ServerEvent = require(path.join(__dirname, 'ServerEvent.js'));
 
@@ -9,7 +10,11 @@ const socketio = require('socket.io');
 
 //import module
 module.exports.listen = (http, ServerEvent) =>{
-    const io = socketio(http);
+    const io = socketio(http, {
+        cors: {
+            origin: "http://localhost:3000",
+        },
+    });
 
     //message recu des qu'on se connecte aux sockets du serveur
     io.on('connection', socket => {

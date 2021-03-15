@@ -1,1 +1,18 @@
-<html><body><h1>Ici on va faire le chat</h1></body></html>
+<html>
+    <head>
+        <title> 
+            Mes premiers WebSockets
+        </title>
+    </head>
+
+    <body>
+        <h1>Ici on va faire le chat</h1>
+
+        <script src="/socket.io/socket.io.min.js"></script>
+        <script type="text/javascript">
+            const socket = io('http://localhost:3000');
+
+            socket.emit('message', 'This is my first WebSocket');
+        </script>
+    </body>
+</html>

@@ -32,6 +32,8 @@ const socketPath = path.join(__dirname, 'Controller', 'sockets.js');
 require(socketPath).listen(http, ServerEvent);
 //console.log('ServerEvent :', ServerEvent);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 //Syncrone mais avant initialisation donc "ça passe" --> on dit que indexHtml est lu par chatFile
 const chatFile = fs.readFileSync('./index.html');
 
